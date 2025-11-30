@@ -3,7 +3,7 @@ use std::process::Command;
 
 async fn deploy() -> &'static str {
     println!("Pulling latest changes from GitHub...");
-    
+
     let output = Command::new("git")
         .arg("pull")
         .output()
@@ -12,7 +12,7 @@ async fn deploy() -> &'static str {
     println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
     println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
 
-    "✅ Updated from GitHub"
+    "Updated from GitHub\nstdout and stderr printed to machine console."
 }
 
 #[tokio::main]
@@ -20,7 +20,7 @@ async fn main() {
     let app = Router::new().route("/deploy", post(deploy));
 
     let addr = "0.0.0.0:3000";
+    println!("Listening on {}", addr);
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     axum::serve(listener, app).await.unwrap();
-    println!("Listening on {}", addr);
 }
