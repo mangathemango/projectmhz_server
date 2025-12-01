@@ -1,5 +1,7 @@
 use axum::{routing::post, Router};
 use std::process::Command;
+mod gpio;
+use crate::gpio::buzzer::{self, buzz};
 
 async fn deploy() -> &'static str {
     println!("Pulling latest changes from GitHub...");
@@ -17,7 +19,9 @@ async fn deploy() -> &'static str {
 
 #[tokio::main]
 async fn main() {
-    let app = Router::new().route("/deploy", post(deploy));
+    let app = Router::new()
+        .route("/deploy", post(deploy))
+        .route("/buzz",   post(buzz));
 
     let addr = "0.0.0.0:3000";
     println!("Listening on {}", addr);
