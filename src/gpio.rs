@@ -19,7 +19,7 @@ impl OutputPinRole {
         }
     }
 
-    pub fn get_pin(&self) -> OutputPin {
+    pub fn get_pin(&self) -> Result<OutputPin> {
         Gpio::new()?.get(OutputPin::Led.bcm())?.into_output()
     }
 }
