@@ -1,6 +1,5 @@
 pub mod buzzer;
 use rppal::gpio::{OutputPin, Gpio};
-use anyhow::Result;
 
 #[derive(Debug, Clone, Copy)]
 pub enum OutputPinRole {
@@ -14,8 +13,12 @@ impl OutputPinRole  {
         }
     }
 
-    pub fn get_pin(&self) -> Result<OutputPin> {
-        Ok(Gpio::new()?.get(self.get_bcm())?.into_output())
+    pub fn get_pin(&self) -> OutputPin {
+        Gpio::new()
+            .expect("Unable to get GPIO")
+            .get(self.get_bcm())
+            .expect(format!("Cannot get pin {}",self.get_bcm()).as_str())
+            .into_output()
     }
 }
 

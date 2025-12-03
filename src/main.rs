@@ -1,7 +1,6 @@
 use axum::{routing::post, Router};
-use std::process::Command;
 mod gpio;
-use crate::gpio::buzzer::{self, buzz};
+use crate::gpio::buzzer::buzz;
 
 #[tokio::main]
 async fn main() {

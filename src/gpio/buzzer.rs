@@ -1,12 +1,12 @@
 use crate::gpio::OutputPinRole;
-use std::time::Duration;
 use std::thread::sleep;
+use std::time::Duration;
 
 pub async fn buzz() -> &'static str {
-    let pin = OutputPinRole::Buzzer::get_pin();
+    let mut pin = OutputPinRole::get_pin(&OutputPinRole::Buzzer);
     let interval = 10;
     let reps = 100;
-    for i in 0..reps {
+    for _ in 0..reps {
         pin.set_high();
         sleep(Duration::from_millis(interval));
         pin.set_low();
@@ -14,4 +14,3 @@ pub async fn buzz() -> &'static str {
     }
     "Buzzing request sent"
 }
-
