@@ -1,15 +1,18 @@
 pub mod buzzer;
+pub mod fan;
 use rppal::gpio::{OutputPin, Gpio};
 
 #[derive(Debug, Clone, Copy)]
 pub enum OutputPinRole {
-    Buzzer
+    Buzzer,
+    Fan
 }
 
 impl OutputPinRole  {
     pub fn get_bcm(&self) -> u8 {
         match self {
-            OutputPinRole::Buzzer => 17
+            OutputPinRole::Buzzer => 17,
+            OutputPinRole::Fan => 22
         }
     }
 
