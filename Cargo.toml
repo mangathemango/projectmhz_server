@@ -7,3 +7,7 @@ edition = "2024"
 axum = "0.7"
 rppal = "0.22.1"
 tokio = { version = "1", features = ["full"] }
+
+[[bin]]
+name = "webhook"
+path = "src/bin/webhook.rs"

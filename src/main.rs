@@ -3,24 +3,9 @@ use std::process::Command;
 mod gpio;
 use crate::gpio::buzzer::{self, buzz};
 
-async fn deploy() -> &'static str {
-    println!("Pulling latest changes from GitHub...");
-
-    let output = Command::new("git")
-        .arg("pull")
-        .output()
-        .expect("failed to pull");
-
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-
-    "Updated from GitHub\nstdout and stderr printed to machine console."
-}
-
 #[tokio::main]
 async fn main() {
     let app = Router::new()
-        .route("/deploy", post(deploy))
         .route("/buzz",   post(buzz));
 
     let addr = "0.0.0.0:3000";
