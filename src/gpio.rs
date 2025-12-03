@@ -14,7 +14,7 @@ impl OutputPinRole  {
         }
     }
 
-    pub fn get_bcm(&self) -> i32 {
+    pub fn get_bcm(&self) -> u8 {
         match self {
             OutputPinRole::Buzzer => 17
         }
