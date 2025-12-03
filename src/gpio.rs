@@ -12,7 +12,7 @@ impl OutputPinRole  {
     pub fn get_bcm(&self) -> u8 {
         match self {
             OutputPinRole::Buzzer => 17,
-            OutputPinRole::Fan => 22
+            OutputPinRole::Fan => 27
         }
     }
 
