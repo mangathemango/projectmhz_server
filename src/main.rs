@@ -6,9 +6,9 @@ use crate::gpio::fan::{fan_on, fan_off};
 #[tokio::main]
 async fn main() {
     let app = Router::new()
-        .route("gpio/buzz",   post(buzz))
-        .route("gpio/fan-on", post(fan_on))
-        .route("gpio/fan-off",post(fan_off));
+        .route("/gpio/buzz",   post(buzz))
+        .route("/gpio/fan-on", post(fan_on))
+        .route("/gpio/fan-off",post(fan_off));
 
     let addr = "0.0.0.0:4000";
     println!("Listening on {}", addr);
