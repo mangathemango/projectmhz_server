@@ -2,7 +2,7 @@ use crate::gpio::OutputPinRole;
 use std::time::Duration;
 use std::thread::sleep;
 
-pub fn buzz() -> &'static str {
+pub async fn buzz() -> &'static str {
     let pin = OutputPinRole::Buzzer::get_pin();
     let interval = 10;
     let reps = 100;
