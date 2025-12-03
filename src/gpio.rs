@@ -8,12 +8,6 @@ pub enum OutputPinRole {
 }
 
 impl OutputPinRole  {
-    pub fn get_type(&self) -> PinType {
-        match self {
-            OutputPinRole::Buzzer => Output
-        }
-    }
-
     pub fn get_bcm(&self) -> u8 {
         match self {
             OutputPinRole::Buzzer => 17
