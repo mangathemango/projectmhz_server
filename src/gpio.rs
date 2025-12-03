@@ -1,5 +1,6 @@
 pub mod buzzer;
 use rppal::gpio::{OutputPin, Gpio};
+use anyhow::Result;
 
 #[derive(Debug, Clone, Copy)]
 pub enum OutputPinRole {
